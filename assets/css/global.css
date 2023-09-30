@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --blue: #215BA8;
+    --light-100: #fff;
+    --light-50: #E9F893;
+    --dark-10: #D9D9D9;
+    --dark-20: #737373;
+    --dark-30: #545454;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+
+/* Estilização do Header */
+header {
+    width: 100vw;
+    background-color: var(--blue);
+    color: var(--light-100);
+    padding: 1rem 2rem;
+}
+
+
+.header-top,
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo,
+.welcome {
+    flex: 1;
+}
+
+
+.logo a {
+    color: var(--light-100);
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.header-top form {
+    flex: 2;
+    text-align: center;
+    position: relative;
+}
+
+
+input[name="search"],
+.bi-search {
+    color: var(--blue);
+    font-size: 1.6rem;
+}
+
+
+input[name="search"]::placeholder {
+    color: #215BA8;
+}
+
+input[name="search"] {
+    width: 100%;
+    border: 0;
+    outline: none;
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+}
+
+
+.bi-search {
+    position: absolute;
+    top: 1rem;
+    right: 3rem;
+}
+
+
+.welcome {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+
+
+}
+
+.welcome-text-link {
+    text-align: center;
+}
+
+.welcome-text {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.welcome-link a {
+    font-size: 1.2rem;
+    color: var(--light-100);
+    transition: all .2s ease-in-out;
+}
+
+.welcome-link a:hover {
+    color: var(--light-50);
+}
+
+.welcome-user-photo i {
+    font-size: 4rem;
+}
+
+
+
+.user-location,
+.icons-favorite-bag {
+    flex: 1;
+}
+
+nav {
+    flex: 3;
+}
+
+.navbar {
+    margin-top: 2rem;
+}
+
+
+.bi-geo-alt {
+    font-size: 2rem;
+    color: var(--light-50);
+}
+
+.user-location input {
+    background-color: transparent;
+    font-size: 1.4rem;
+    color: var(--light-50);
+    border: 0;
+    outline: none;
+    padding: .5rem;
+}
+
+.user-location input::placeholder {
+    font-size: 1.4rem;
+    color: var(--light-50);
+}
+
+
+.navbar nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+header nav ul a {
+    color: var(--light-100);
+    font-size: 1.6rem;
+}
+
+nav ul a:hover {
+    color: var(--light-50);
+    transition: all .2s ease-in-out;
+}
+
+
+.icons-favorite-bag {
+    display: flex;
+    justify-content: end;
+    gap: 1rem;
+    padding-right: 1.2rem;
+}
+
+.icons-favorite-bag a {
+    color: var(--light-100);
+    font-size: 2.5rem;
+
+}
+
+.icon-bag {
+    position: relative;
+}
+
+.total-items-bag {
+    display: inline-block;
+    text-align: center;
+    line-height: 2rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--light-50);
+    color: var(--blue);
+
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    position: absolute;
+    top: 0;
+    right: -1rem;
+}
+
+
+
+
+
+/* Estilização do Footer */
+
+footer {
+    width: 100vw;
+    background-color: var(--blue);
+    padding: 1rem 2rem;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .logo,
+footer .social-medias {
+    flex: 1;
+}
+
+footer nav {
+    flex: 2;
+}
+
+.footer-top nav ul {
+    display: flex;
+    justify-content: space-between;
+    /* gap: 5rem; */
+
+}
+
+
+
+footer nav ul a {
+    color: var(--light-100);
+    font-size: 1.6rem;
+}
+
+
+.social-medias {
+    display: flex;
+    justify-content: end;
+}
+
+.social-medias a {
+    color: var(--light-100);
+    font-size: 2.2rem;
+    margin-right: 1.2rem;
+    transition: all .2s ease-in-out;
+}
+
+.social-medias a:hover {
+    color: var(--light-50);
+}
+
+
+.footer-bottom {
+    text-align: end;
+    color: var(--light-50);
+    font-size: 1.4rem;
+    margin: 2rem 0;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    html {
+        font-size: 60%;
+    }
+
+    .header-top form,
+    .navbar nav,
+    footer nav {
+        display: none;
+    }
+
+    header,
+    footer {
+        padding: 1rem;
+    }
+
+}
+
+@media (max-width: 426px) {
+
+    html {
+        font-size: 55%;
+    }
+
+    header,
+    footer {
+        padding: .5rem;
+    }
+
+}
