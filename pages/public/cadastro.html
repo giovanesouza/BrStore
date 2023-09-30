@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-    <title>Jóias | BrStore</title>
+    <title>Cadastre-se | BrStore</title>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                     <div class="welcome-link">
                         <a href="#">Entre</a>
                         ou
-                        <a href="cadastro.html">Cadastre-se</a>
+                        <a href="#">Cadastre-se</a>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                     <a href="categoria_eletronicos.html">
                         <li>Eletrônicos</li>
                     </a>
-                    <a href="#">
+                    <a href="categoria_joias.html">
                         <li>Jóias</li>
                     </a>
                     <a href="categoria_roupas_masculinas.html">
@@ -74,15 +74,16 @@
         </div>
 
         <div class="icons-favorite-bag">
-            
+
             <a href="../users/client/favoritos.html" id="icon-favorites">
                 <i class="bi bi-suit-heart-fill"></i>
             </a>
 
-            <a href="checkout.html" class="icon-bag">
+            <a href="#" class="icon-bag">
                 <i class="bi bi-bag-fill"></i>
-                <span class="total-items-bag">0</span> 
+                <span class="total-items-bag">0</span>
             </a>
+        </div>
         </div>
 
     </header>
@@ -90,96 +91,51 @@
 
     <main>
 
-        <aside class="categories">
 
-            <h3 class="category">Categorias</h3>
-
-            <ul>
-                <li><input type="checkbox" name="" id="" /> Eletrônicos</li>
-                <li><input type="checkbox" name="" id="" checked /> Jóias</li>
-                <li><input type="checkbox" name="" id="" /> Roupas Masculinas</li>
-                <li><input type="checkbox" name="" id="" /> Roupas Femininas</li>
-            </ul>
-
-        </aside>
+        <h1>Cadastre-se</h1>
 
 
-        <section class="products">
+        <form action="" method="">
 
-            <h1>Jóias</h1>
-
-
-            <div class="products-list">
-
-
-                <div class="product-card">
-
-                    <div class="card-product-image">
-                        <img src="" alt="Imagem produto" />
-                        <i class="bi bi-suit-heart-fill"></i>
-                    </div>
-
-                    <div class="card-product-info">
-                        <h4 class="product-name">Nome produto</h4>
-
-                        <div class="price-before">
-                            <s class="old-price">De R$ 0,00</s>
-                        </div>
-
-                        <div class="price-now">
-                            <h5 class="new-price">R$ 0,00</h5>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="product-card">
-
-                    <div class="card-product-image">
-                        <img src="" alt="Imagem produto" />
-                        <i class="bi bi-suit-heart-fill"></i>
-                    </div>
-
-                    <div class="card-product-info">
-                        <h4 class="product-name">Nome produto</h4>
-
-                        <div class="price-before">
-                            <s class="old-price">De R$ 0,00</s>
-                        </div>
-
-                        <div class="price-now">
-                            <h5 class="new-price">R$ 0,00</h5>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="product-card">
-
-                    <div class="card-product-image">
-                        <img src="" alt="Imagem produto" />
-                        <i class="bi bi-suit-heart-fill"></i>
-                    </div>
-
-                    <div class="card-product-info">
-                        <h4 class="product-name">Nome produto</h4>
-
-                        <div class="price-before">
-                            <s class="old-price">De R$ 0,00</s>
-                        </div>
-
-                        <div class="price-now">
-                            <h5 class="new-price">R$ 0,00</h5>
-                        </div>
-                    </div>
-
-                </div>
-
+            <div class="input-area">
+                <label for="fullname">Nome completo</label><br />
+                <input type="text" name="nome_completo" id="fullname" />
             </div>
 
-        </section>
+            <div class="input-area">
+                <label for="birthday">Data de nascimento</label> <br />
+                <input type="date" name="data_nascimento" id="birthday" />
+            </div>
+
+            <div class="input-area">
+                <label for="cpf">CPF</label> <br />
+                <input type="text" name="cpf" id="cpf" />
+            </div>
+
+            <div class="input-area">
+                <label for="cel">Telefone</label> <br />
+                <input type="text" name="telefone" id="cel" />
+            </div>
+
+            <div class="input-area">
+                <label for="email">E-mail</label> <br />
+                <input type="text" name="email" id="email" />
+            </div>
+
+            <div class="input-area" id="input-password">
+                <label for="password">Senha</label> <br />
+                <input type="password" name="senha" id="password" />
+                <i class="bi bi-eye-slash-fill"></i>
+                <!-- <i class="bi bi-eye-fill"></i> -->
+            </div>
+
+
+            <button type="submit">Criar cadastro</button>
+
+        </form>
+
+
+
 
     </main>
 
