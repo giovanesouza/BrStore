@@ -1,3 +1,3 @@
 # BrStore
 
-Branch com o desenvolvimento da parte estrutural (HTML) do sistema
+Branch com a implementação da estilização (CSS) no sistema

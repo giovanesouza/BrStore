@@ -7,7 +7,7 @@
     <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../assets/css/global.css" />
-    <title>Entrar | BrStore</title>
+    <title>Trabalhe conosco | BrStore</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 
             <form action="" method="">
 
-                <input type="search" name="search" placeholder="Buscar produto..." />
+                <input type="text" name="search" placeholder="Buscar produto..." />
                 <i class="bi bi-search"></i>
 
             </form>
@@ -32,7 +32,7 @@
                     <div class="welcome-text">Seja bem vindo(a)!</div>
 
                     <div class="welcome-link">
-                        <a href="#">Entre</a>
+                        <a href="login.html">Entre</a>
                         ou
                         <a href="cadastro.html">Cadastre-se</a>
                     </div>
@@ -72,12 +72,13 @@
                 </ul>
             </nav>
 
+
             <div class="icons-favorite-bag">
-    
+
                 <a href="../users/client/favoritos.html" id="icon-favorites">
                     <i class="bi bi-suit-heart-fill"></i>
                 </a>
-    
+
                 <a href="checkout.html" class="icon-bag">
                     <i class="bi bi-bag-fill"></i>
                     <span class="total-items-bag">0</span>
@@ -85,42 +86,34 @@
             </div>
         </div>
 
-
     </header>
 
 
     <main>
 
-        <h1>
-            <i class="bi bi-person-fill"></i>
-            Login do cliente
-        </h1>
-
+        <h1>Trabalhe conosco</h1>
 
         <form action="" method="">
 
             <div class="input-area">
-                <label for="email">E-mail</label> <br />
-                <input type="text" name="email" id="email" />
+                <label for="fullname">Nome completo</label><br />
+                <input type="text" name="nome_completo" id="fullname" required />
             </div>
 
-            <div class="input-area" id="input-password">
-                <label for="password">Senha</label> <br />
-                <input type="password" name="senha" id="password" />
-                <i class="bi bi-eye-slash-fill"></i>
-                <!-- <i class="bi bi-eye-fill"></i> -->
+            <div class="input-area">
+                <label for="position">Cargo</label><br />
+                <input type="text" name="cargo" id="position" required />
+            </div>
+
+            <div class="input-area">
+                <label for="resume">Currículo em PDF</label><br />
+                <input type="file" name="curriculo" id="resume" accept=".pdf" required />
             </div>
 
 
-            <button type="submit">Entrar</button>
+            <button type="submit">Enviar currículo</button>
 
         </form>
-
-        <div class="no-registration">
-
-            <span>Não tem cadastro? <a href="cadastro.html">Cadastre-se</a></span>
-
-        </div>
 
     </main>
 
@@ -133,7 +126,7 @@
 
             <nav>
                 <ul>
-                    <a href="trabalhe_conosco.html">
+                    <a href="#">
                         <li>Trabalhe conosco</li>
                     </a>
                     <a href="termos_e_condicoes.html">
