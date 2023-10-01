@@ -39,7 +39,7 @@ aside.categories {
     flex: 1;
 }
 
-.products h1 {
+h1 {
     color: var(--dark-30);
     font-size: 3.2rem;
     margin-bottom: 1.6rem;
