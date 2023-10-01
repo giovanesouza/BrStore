@@ -1,0 +1,32 @@
+@import url("produtos.css");
+
+section.favorites .favorites-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+}
+
+.favorites-list .product-card {
+    flex: .25;
+    /* flex: 1; */
+    min-width: 22rem;
+    box-shadow: 0 0 .8rem var(--dark-20);
+    border-radius: .8rem;
+    margin-bottom: 1rem;
+    transition: all .5s ease-in-out;
+}
+
+.favorites-list .product-card:hover {
+    transform: scale(1.03);
+}
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    .favorites-list .product-card {
+        flex: 1;
+    }
+
+}
