@@ -38,45 +38,44 @@
 
 
 /* Formata os radios */
-div#radio input {
+label input {
     /* Remove aparência padrão do input*/
     appearance: none;
     -webkit-apperance: none;
     -noz-apperance: none;
 
     /* Define o tamanho do input */
-    width: 2.7rem;
-    height: 2.7rem;
+    width: 2.2rem;
+    height: 2.2rem;
 
     /* Define bg */
-    background-color: #344056;
+    background-color: var(--light-100);
 
 
     /* Add borda */
-    border: 0.1rem solid rgba(2, 228, 231, 0.8);
+    border: 0.1rem solid var(--dark-30);
 
     /* Deixa as bordas redondas */
     border-radius: 50%;
 
     /* Insere sombra */
-    box-shadow: 0 0 0.5rem #aac5c6;
+    /* box-shadow: 0 0 0.5rem #aac5c6; */
 
 
     /* Margem à direita dos inputs */
-    margin-right: 10px;
+    margin-right: 1rem;
 
     position: relative;
-    top: 4px;
+    top: .4rem;
 
     /* Add transição */
     transition: .2s all ease-in-out;
     cursor: pointer;
 }
 
-div#radio input:checked {
-    border: 0.7vw solid #344056;
-    background-color: #08BEC7;
+
+label input:checked {
+    border: .6rem solid var(--dark-30);
+    background-color: var(--light-100);
 
 }
-
-

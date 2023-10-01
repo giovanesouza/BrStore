@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
-    <link rel="stylesheet" href="../../assets/css/global.css" />
+    <link rel="stylesheet" href="../../assets/css/checkout.css" />
     <title>Minha sacola | BrStore</title>
 </head>
 
@@ -90,11 +90,11 @@
 
     <main>
 
-        <section class="bag-checkout">
+        <section id="bag-checkout">
 
             <h1>Minha sacola</h1>
 
-            <table class="list-items">
+            <table id="list-items">
                 <thead>
                     <tr>
                         <th>Produto</th>
@@ -107,9 +107,34 @@
 
                 <tbody>
                     <tr>
+                        <td class="product-img-name">
+                            <img src="../../assets/images/cel.png" alt="img produto" />
+                            <span class="product-name">Nome produto</span>
+                        </td>
+
+                        <td> R$ <span class="unit-price">130,00</span> </td>
+
                         <td>
-                            <img src="" alt="img produto" />
-                            <span>Nome produto</span>
+                            <i class="bi bi-dash-square-fill"></i>
+                            <span class="item-quantity">1</span>
+                            <i class="bi bi-plus-square-fill"></i>
+
+                        </td>
+
+                        <td>
+                            R$ <span class="total-price">130,00</span>
+                        </td>
+
+
+                        <td>
+                            <i class="bi bi-trash3-fill"></i>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="product-img-name">
+                            <img src="../../assets/images/joia.jpg" alt="img produto" />
+                            <span class="product-name">Nome produto</span>
                         </td>
 
                         <td> R$ <span class="unit-price">130,00</span> </td>
@@ -133,35 +158,9 @@
                     </tr>
 
                     <tr>
-                        <td>
-                            <img src="" alt="img produto" />
-                            <span>Nome produto</span>
-                        </td>
-
-                        <td> R$ <span class="unit-price">130,00</span> </td>
-
-                        <td>
-
-                            <i class="bi bi-dash-square-fill"></i>
-                            <span class="item-quantity">1</span>
-                            <i class="bi bi-plus-square-fill"></i>
-
-                        </td>
-
-                        <td>
-                            R$ <span class="total-price">130,00</span>
-                        </td>
-
-
-                        <td>
-                            <i class="bi bi-trash3-fill"></i>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <img src="" alt="img produto" />
-                            <span>Nome produto</span>
+                        <td class="product-img-name">
+                            <img src="../../assets/images/shirt.jpg" alt="img produto" />
+                            <span class="product-name">Nome produto</span>
                         </td>
 
                         <td> R$ <span class="unit-price">130,00</span> </td>
@@ -191,7 +190,7 @@
         </section>
 
 
-        <aside class="payment-info">
+        <aside id="payment-info">
 
             <h3>Informações de pagamento</h3>
 
@@ -204,8 +203,8 @@
                 <h4>Cupom de desconto</h4>
 
                 <div class="cupom-area">
-                    <input type="text" />
-                    <button>Aplicar</button>
+                    <input type="text" id="cupom" maxlength="15" />
+                    <button id="aply-discount">Aplicar</button>
                 </div>
             </div>
 
@@ -230,18 +229,15 @@
             </div>
 
 
-            <div class="payment-method">
+            <form id="payment-method">
 
                 <h4>Forma de pagamento</h4>
 
-                <label><input type="radio" name="payment_method" /> Cartão de Crédito</label>
-                <label><input type="radio" name="payment_method" /> Cartão de Crédito</label>
+                <label><input type="radio" name="payment_method" value="" /> Cartão de Crédito</label>
+                <label><input type="radio" name="payment_method" value="" /> Cartão de Crédito</label>
 
-                <button>Finalizar compra</button>
-            </div>
-
-
-
+                <button type="submit">Finalizar compra</button>
+            </form>
 
         </aside>
 
