@@ -23,13 +23,14 @@ html {
 }
 
 body {
+    max-width: 100vw;
     font-size: 1.6rem;
 }
 
 
 /* Estilização do Header */
 header {
-    width: 100vw;
+    width: 100%;
     background-color: var(--blue);
     color: var(--light-100);
     padding: 1rem 2rem;
@@ -215,7 +216,7 @@ nav ul a:hover {
 /* Estilização do Footer */
 
 footer {
-    width: 100vw;
+    width: 100%;
     background-color: var(--blue);
     padding: 1rem 2rem;
 }
