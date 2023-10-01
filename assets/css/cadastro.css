@@ -1,0 +1,86 @@
+@import url("global.css");
+
+main {
+    padding: 1rem 2rem;
+}
+
+h1 {
+    color: var(--dark-30);
+    font-size: 3.2rem;
+    text-align: center;
+    margin-bottom: 1.6rem;
+}
+
+form .input-area {
+    color: var(--dark-20);
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+
+.input-area label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.input-area input {
+    width: 30rem;
+    color: var(--dark-30);
+    font-size: 1.6rem;
+    padding: .5rem 1rem;
+    border: .1rem solid var(--dark-20);
+    outline: none;
+    border-radius: .5rem;
+}
+
+.input-area input[type=date], .input-area input[name="cpf"], .input-area input[name="telefone"] {
+    width: 20rem;
+}
+
+
+.input-area#input-password {
+    width: max-content;
+    position: relative;
+}
+
+.input-area#input-password i.bi {
+    font-size: 1.8rem;
+    color: var(--dark-30);
+    position: absolute;
+    top: 3rem;
+    right: 1.8rem;
+
+    cursor: pointer;
+}
+
+
+form button {
+    display: block;
+    width: 35rem;
+    background-color: var(--dark-10);
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 1.6rem;
+    border: 0;
+    border-radius: 1rem;
+    padding: 1rem;
+
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+form button:hover {
+    background-color: var(--blue);
+    color: var(--light-100);
+}
+
+
+/* Responsividade */
+@media (max-width: 426px) {
+
+   main {
+    padding: 1rem;
+   }
+
+}
