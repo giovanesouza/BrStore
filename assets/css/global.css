@@ -276,6 +276,10 @@ footer nav ul a {
 }
 
 
+.footer-bottom .copy {
+    margin-bottom: 1rem;
+}
+
 
 /* Responsividade */
 @media (max-width: 768px) {
