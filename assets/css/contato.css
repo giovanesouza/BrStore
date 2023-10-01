@@ -1,0 +1,33 @@
+@import url("global.css");
+
+main {
+    padding: 1rem 2rem;
+    text-align: center;
+    color: var(--dark-30);
+}
+
+h1 {
+    font-size: 3.2rem;
+    margin-bottom: 1.6rem;
+}
+
+div#contact img {
+    width: 10rem;
+    margin-bottom: 2rem;
+}
+
+
+
+div#contact a {
+    display: block;
+    width: max-content;
+    margin: .5rem auto;
+    color: var(--dark-30);
+    font-weight: bold;
+    transition: all .2s ease-in-out;
+}
+
+div#contact a:hover {
+    color: var(--blue);
+    transform: scale(1.1);
+}
