@@ -20,7 +20,7 @@ h1 .bi-person-fill {
 }
 
 
-form {
+main form {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -73,13 +73,13 @@ form {
         width: 100%;
         padding: 1rem;
     }
-    
-    
-    form {
+
+
+    main form {
         grid-template-columns: 1fr;
         background-color: transparent;
     }
-    
+
     .input-area {
         width: 80%;
         margin: auto;
@@ -88,5 +88,5 @@ form {
     div.input-area input {
         width: 100%;
     }
- 
+
 }
