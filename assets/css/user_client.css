@@ -1,0 +1,92 @@
+@import url("global.css");
+
+main {
+    width: 80%;
+    padding: 1rem 2rem;
+    color: var(--dark-30);
+    margin: auto;
+}
+
+h1 {
+    font-size: 3.2rem;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+h1 .bi-person-fill {
+    display: block;
+    color: var(--blue);
+    font-size: 4rem;
+}
+
+
+form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10rem;
+    margin-bottom: 3rem;
+}
+
+
+.input-area label {
+    display: block;
+    margin: 1rem 0 .5rem;
+}
+
+.input-area input {
+    width: 80%;
+    color: var(--dark-30);
+    font-size: 1.6rem;
+    padding: .5rem 1rem;
+    border: .1rem solid var(--dark-20);
+    outline: none;
+    border-radius: .5rem;
+}
+
+
+.input-area#input-password {
+    width: 80%;
+    position: relative;
+}
+
+.input-area#input-password input {
+    width: 100%;
+}
+
+.input-area#input-password i.bi {
+    font-size: 1.8rem;
+    color: var(--dark-30);
+    position: absolute;
+    top: 4rem;
+    right: 1.8rem;
+
+    cursor: pointer;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+
+    main {
+        width: 100%;
+        padding: 1rem;
+    }
+    
+    
+    form {
+        grid-template-columns: 1fr;
+        background-color: transparent;
+    }
+    
+    .input-area {
+        width: 80%;
+        margin: auto;
+    }
+
+    div.input-area input {
+        width: 100%;
+    }
+ 
+}
