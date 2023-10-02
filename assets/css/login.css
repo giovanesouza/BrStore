@@ -1,0 +1,108 @@
+@import url("global.css");
+
+main {
+    padding: 1rem 2rem;
+    text-align: center;
+    color: var(--dark-30);
+}
+
+h1 {
+    font-size: 3.2rem;
+    margin: 4rem 0;
+}
+
+h1 .bi-person-fill {
+    display: block;
+    color: var(--blue);
+    font-size: 5rem;
+}
+
+
+/* Deixa os inputs centralizados e com tamanho máx do conteúdo (flexível) */
+form .input-area {
+    width: max-content;
+    margin: auto;
+    position: relative;
+
+    color: var(--dark-20);
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+
+.input-area label {
+    display: block;
+    margin-bottom: .5rem;
+    text-align: justify;
+}
+
+
+.input-area input {
+    width: 35rem;
+    color: var(--dark-30);
+    font-size: 1.6rem;
+    padding: .5rem 1rem;
+    border: .1rem solid var(--dark-20);
+    outline: none;
+    border-radius: .5rem;
+}
+
+.input-area#input-password i.bi {
+    font-size: 1.8rem;
+    color: var(--dark-30);
+    position: absolute;
+    top: 3rem;
+    right: 1.8rem;
+
+    cursor: pointer;
+}
+
+
+form button {
+    display: block;
+    width: 35rem;
+    background-color: var(--dark-10);
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 1.6rem;
+    border: 0;
+    border-radius: 1rem;
+    padding: 1rem;
+
+    margin: 2rem auto 1rem;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+form button:hover {
+    background-color: var(--blue);
+    color: var(--light-100);
+}
+
+div#no-registration {
+    font-size: 1.4rem;
+    margin-bottom: 4rem;
+}
+
+div#no-registration a {
+    color: var(--dark-30);
+    text-decoration: underline;
+    transition: all .2s ease-in-out;
+}
+
+div#no-registration a:hover {
+    color: var(--blue);
+}
+
+
+/* Responsividade */
+@media (max-width: 426px) {
+    main {
+        padding: .5rem;
+    }
+
+    .input-area input, form button {
+        width: 25rem;
+    }
+
+}
