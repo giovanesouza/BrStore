@@ -2,6 +2,7 @@
 
 main {
     padding: 1rem 2rem;
+    margin: 4rem 0;
 }
 
 h1 {
@@ -65,7 +66,7 @@ form button {
     border-radius: 1rem;
     padding: 1rem;
 
-    margin: 0 auto;
+    margin: 5rem auto 0;
     cursor: pointer;
     transition: all .2s ease-in-out;
 }
