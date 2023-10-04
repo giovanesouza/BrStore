@@ -95,6 +95,12 @@ h1 {
     color: var(--blue);
 }
 
+
+.favorite {
+    color: var(--blue) !important;
+}
+
+
 .card-product-info {
     padding: 2rem;
 }
