@@ -58,6 +58,25 @@ cardProduct.forEach(item => {
 
 if (location.href === 'http://127.0.0.1:5500/pages/users/client/favoritos.html') {
 
+    // Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio
+    const getBagProduct = () => { return JSON.parse(localStorage.getItem('checkout')) || [] };
+
+    const updateTotalItems = () => {
+
+        // Pega os produtos add à sacola -> salvos no localStorage
+        const bagProducts = getBagProduct();
+
+
+        const totalBagItemsHeader = document.querySelector('.total-items-bag');
+        totalBagItemsHeader.innerHTML = bagProducts.length;
+    }
+
+    updateTotalItems();
+
+
+
+
+
     // Pega os produtos favoritos salvos no localStorage
     const favoriteProducts = getFavoriteProducts();
 
@@ -81,11 +100,11 @@ if (location.href === 'http://127.0.0.1:5500/pages/users/client/favoritos.html')
                 <h4 class="product-name">${prod.productName}</h4>
 
                 <div class="price-before">
-                    <span class="old-price">${prod.oldPrice}</span>
+                    <span class="old-price">R$ ${prod.oldPrice.toFixed(2)}</span>
                 </div>
 
                 <div class="price-now">
-                    <h5 class="new-price">R${prod.newPrice}</h5>
+                    <h5 class="new-price">R$ ${prod.newPrice.toFixed(2)}</h5>
                 </div>
 
                 <button class="add-bag">
