@@ -76,9 +76,8 @@ h1 {
 
 
 .product-card .card-product-image img { 
-    /* max-width: 80%; */
-    max-height: 15rem;
-
+    max-width: 15rem;
+    height: 15rem;
 }
 
 .card-product-image .bi-suit-heart-fill {
@@ -151,6 +150,11 @@ h1 {
     .products-list .product-card {
         flex: 1;
     }
+
+    /* .product-card .card-product-image img { 
+        max-width: 15rem;
+    } */
+
 
 }
 

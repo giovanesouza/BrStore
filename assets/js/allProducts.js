@@ -1,74 +1,52 @@
-const allProducts = [
-
-    {
-        id: 1,
-        productImage: "http://127.0.0.1:5500/assets/images/shirt.jpg",
-        productName: "Camisa Masculina",
-        oldPrice: 45.00,
-        newPrice: 30.00
-    },
-    {
-        id: 2,
-        productImage: "http://127.0.0.1:5500/assets/images/dress.jpg",
-        productName: "Vestido",
-        oldPrice: 80.00,
-        newPrice: 60.00
-    },
-    {
-        id: 3,
-        productImage: "http://127.0.0.1:5500/assets/images/joia.jpg",
-        productName: "Jóia",
-        oldPrice: 500.99,
-        newPrice: 350.00
-    },
-    {
-        id: 4,
-        productImage: "http://127.0.0.1:5500/assets/images/cel.png",
-        productName: "Celular",
-        oldPrice: 1500.00,
-        newPrice: 999.00
-    }
-
-
-];
-
 const listProducts = document.querySelector('.products-list');
 
-// Listagem dos produtos na página principal (index)
-allProducts.map((prod, key) => {
+const loadProducts = () => {
 
-    listProducts.innerHTML += `
-    
-        <div class="product-card" key="${prod.id}">
+    fetch('https://fakestoreapi.com/products')
+        .then(res => res.json())
+        .then(allProducts => {
+            console.log(allProducts)
 
-        <div class="card-product-image">
-            <img src="${prod.productImage}" alt="Imagem produto" />
-            <i class="bi bi-suit-heart-fill" key="${key}"></i>
-        </div>
+            // Listagem dos produtos na página principal (index)
+            allProducts.map((prod, key) => {
 
-        <div class="card-product-info">
-            <h4 class="product-name">${prod.productName}</h4>
+                listProducts.innerHTML += `
+                
+                    <div class="product-card" key="${prod.id}">
+            
+                    <div class="card-product-image">
+                        <img src="${prod.image}" alt="${prod.title}" />
+                        <i class="bi bi-suit-heart-fill" key="${key}"></i>
+                    </div>
+            
+                    <div class="card-product-info">
+                    <!-- .slice(0, 16): Padroniza o tamanho dos títulos -->
+                        <h4 class="product-name">${prod.title.slice(0, 16)}</h4>
+            
+                        <div class="price-before">
+                            <span class="old-price">R$ ${(prod.price * 5).toFixed(2)}</span>
+                        </div>
+            
+                        <div class="price-now">
+                            <h5 class="new-price">R$ ${(prod.price * 3).toFixed(2)}</h5>
+                        </div>
+            
+                        <button class="add-bag" key="${key}">
+                            <i class="bi bi-bag-fill"></i>
+                            Adicionar à sacola
+                        </button>
+                    </div>
+            
+                </div>
+                
+                `;
 
-            <div class="price-before">
-                <span class="old-price">R$ ${prod.oldPrice.toFixed(2)}</span>
-            </div>
+            });
 
-            <div class="price-now">
-                <h5 class="new-price">R$ ${prod.newPrice.toFixed(2)}</h5>
-            </div>
+        });
+}
 
-            <button class="add-bag" key="${key}">
-                <i class="bi bi-bag-fill"></i>
-                Adicionar à sacola
-            </button>
-        </div>
-
-    </div>
-    
-    `;
-
-});
-
+loadProducts()
 
 
 
