@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../assets/css/cadastro.css" />
     <script src="../../assets/js/cadastro.js" defer></script>
+    <script src="../../assets/js/inputMasks.js" defer></script>
     <title>Cadastre-se | BrStore</title>
 </head>
 
@@ -109,12 +110,12 @@
 
             <div class="input-area">
                 <label for="cpf">CPF</label>
-                <input type="text" name="cpf" id="cpf" maxlength="11" />
+                <input type="text" name="cpf" id="cpf" maxlength="14" oninput="maskCPF(this)" />
             </div>
 
             <div class="input-area">
                 <label for="cel">Telefone</label>
-                <input type="text" name="telefone" id="cel" maxlength="11" />
+                <input type="text" name="telefone" id="cel" maxlength="15" oninput="maskCel(this)" />
             </div>
 
             <div class="input-area">
