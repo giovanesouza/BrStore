@@ -1,3 +1,3 @@
 # BrStore
 
-Branch com a implementação da estilização (CSS) no sistema
+Branch com a implementação da lógica (JS) no sistema.
