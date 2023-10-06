@@ -1,14 +1,19 @@
 const listProducts = document.querySelector('.products-list');
 
+const allProducts = []; // Guarda todos os produtos da API
+
+
 const loadProducts = () => {
 
     fetch('https://fakestoreapi.com/products')
         .then(res => res.json())
-        .then(allProducts => {
-            console.log(allProducts)
+        .then(products => {
+            // console.log(allProducts)
+
+            allProducts.push(products); // Salva os produtos da API (objetos) e deixa-os disponíveis p/ aplicação
 
             // Listagem dos produtos na página principal (index)
-            allProducts.map((prod, key) => {
+            products.map((prod, key) => {
 
                 listProducts.innerHTML += `
                 
@@ -41,14 +46,48 @@ const loadProducts = () => {
                 
                 `;
 
+
+                // Adiciona os ítens à bag
+                const btnBuy = document.querySelectorAll('.add-bag');
+
+                btnBuy.forEach(item => {
+
+                    let key;
+
+                    item.addEventListener('click', e => {
+
+                        // Pega o id do produto
+                        key = e.target.getAttribute('key');
+
+                        // Pega os produtos add à sacola -> salvos no localStorage
+                        const bagProducts = getBagProduct();
+
+                        const addToBag = products[key]; // Pega os dados do produto a ser salvo
+
+                        // console.log(addToBag)
+
+                        bagProducts.push(addToBag); // Adiciona produto à lista
+
+                        saveBagProducts(bagProducts); // atualiza lista no localStorage
+
+                        // Exibe msg informando que houve a add do produto à sacola
+                        alert(`O item ${products[key].title} foi adicionado à sacola com sucesso!`);
+
+                        updateTotalItems();
+
+                    });
+
+                });
+
+
             });
 
         });
+
+
 }
 
-loadProducts()
-
-
+loadProducts();
 
 
 // Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio
@@ -60,40 +99,6 @@ const saveBagProducts = (bag) => { return localStorage.setItem('checkout', JSON.
 
 
 let totalItems = 0;
-
-
-// Add produto à sacola
-const btnBuy = document.querySelectorAll('.add-bag');
-
-btnBuy.forEach(item => {
-
-    let key;
-
-
-    item.addEventListener('click', e => {
-
-        // Pega o id do produto
-        key = e.target.getAttribute('key');
-
-        // Pega os produtos add à sacola -> salvos no localStorage
-        const bagProducts = getBagProduct();
-
-        const addToBag = allProducts[key]; // Pega os dados do produto a ser salvo
-
-        // console.log(addToBag)
-
-        bagProducts.push(addToBag); // Adiciona produto à lista
-
-        saveBagProducts(bagProducts); // atualiza lista no localStorage
-
-        // Exibe msg informando que houve a add do produto à sacola
-        alert(`O item ${allProducts[key].productName} foi adicionado à sacola com sucesso!`);
-
-        updateTotalItems();
-
-    });
-
-});
 
 
 const updateTotalItems = () => {
