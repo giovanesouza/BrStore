@@ -1,8 +1,3 @@
-// Pega todos os registros
-// let registeredUsers = localStorage.getItem("usuarios");
-// let userObj = JSON.parse(registeredUsers);
-
-
 // Pega todos os usuários salvos no localStorage, caso não exista retorna um array vazio
 const getRegisteredUsers = () => { return JSON.parse(localStorage.getItem("usuarios")) || [] };
 
