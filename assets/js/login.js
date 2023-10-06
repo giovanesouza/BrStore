@@ -2,7 +2,7 @@
 const getRegisteredUsers = () => { return JSON.parse(localStorage.getItem("usuarios")) || [] };
 
 
-// Pega os produtos add à sacola -> salvos no localStorage
+// Pega os usuários salvos no localStorage
 const userObj = getRegisteredUsers();
 
 
