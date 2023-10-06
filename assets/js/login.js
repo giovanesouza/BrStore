@@ -1,12 +1,25 @@
 // Pega todos os registros
-let registeredUsers = localStorage.getItem("usuarios");
+// let registeredUsers = localStorage.getItem("usuarios");
+// let userObj = JSON.parse(registeredUsers);
 
-let userObj = JSON.parse(registeredUsers);
+
+// Pega todos os usuários salvos no localStorage, caso não exista retorna um array vazio
+const getRegisteredUsers = () => { return JSON.parse(localStorage.getItem("usuarios")) || [] };
 
 
-// Informações para login
-let userEmail = userObj[0].email;
-let userPassword = userObj[0].senha;
+// Pega os produtos add à sacola -> salvos no localStorage
+const userObj = getRegisteredUsers();
+
+
+// Pega as informações de login do usuário do localStorage para comparar com os dados do form
+let userEmail;
+let userPassword;
+
+if(userObj.length !== 0) {
+    // Informações para login
+    userEmail = userObj[0].email;
+    userPassword = userObj[0].senha;
+}
 
 
 const btnLogar = document.querySelector('[type="submit"]');
