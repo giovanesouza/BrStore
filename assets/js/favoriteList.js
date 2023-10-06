@@ -1,7 +1,5 @@
 // Página Favoritos
 
-const hostName = location.hostname; // Pega a URL do link sem os diretórios
-
 // HEADER -> Indicação da qtd de produtos adicionados à sacola
 
 // Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio

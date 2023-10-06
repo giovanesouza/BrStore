@@ -1,10 +1,11 @@
 // Pega todos os usuários salvos no localStorage, caso não exista retorna um array vazio
 const getRegisteredUsers = () => { return JSON.parse(localStorage.getItem("usuarios")) || [] };
 
-
 // Pega os usuários salvos no localStorage
 const userObj = getRegisteredUsers();
 
+// Utilizado no redirecionamento de página -> página de login para página de usuário logado
+const host = location.origin;
 
 // Pega as informações de login do usuário do localStorage para comparar com os dados do form
 let userEmail;
@@ -36,8 +37,8 @@ btnLogar.addEventListener('click', (e) => {
                 
                 // Redireciona para pág do usuário logado
                 setTimeout(() => {
-                    window.location.href = "http://127.0.0.1:5500/pages/users/client/user.html";
-                }, 1000);
+                    window.location.href = `${host}/pages/users/client/user.html`;
+                }, 100);
 
             } else {
                 
