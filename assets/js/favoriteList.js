@@ -22,15 +22,12 @@ updateTotalItems();
 
 
 
-
-
 // Pega lista de favoritos (localStorage)
 const getFavoriteProducts = () => { return JSON.parse(localStorage.getItem('favoritos')) || [] };
 
 
 // Utilizado para atualizar a lista
 const saveFavoriteProducts = (favorite) => { return localStorage.setItem('favoritos', JSON.stringify(favorite)); };
-
 
 
 
@@ -66,7 +63,7 @@ favoriteProducts.length === 0 ? listProducts.insertAdjacentHTML("afterend", `<di
                 <h5 class="new-price">R$ ${prod.newPrice.toFixed(2)}</h5>
             </div>
 
-            <button class="add-bag">
+            <button class="add-bag" key="${prod.id}">
                 <i class="bi bi-bag-fill" key="${prod.id}"></i>
                 Adicionar à sacola
             </button>
@@ -94,7 +91,7 @@ favorites.forEach(item => {
         const removeList = confirm(`Você realmente deseja remover este produto da lista?`);
 
         // Caso clique em ok (true) -> atualiza a lista no localStorage e recarrega a página com a atualização
-        if(removeList) {
+        if (removeList) {
             saveFavoriteProducts(updateFavoriteList); // Atualiza lista no localStorage
 
             setTimeout(() => {
@@ -106,3 +103,75 @@ favorites.forEach(item => {
 
 });
 
+
+
+/*
+
+// Adição de produtos à sacola pela pág favoritos
+
+// Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio
+const getBagProduct = () => { return JSON.parse(localStorage.getItem('checkout')) || [] };
+
+// Salva novo produto
+const saveBagProducts = (bag) => { return localStorage.setItem('checkout', JSON.stringify(bag)); };
+
+
+let totalItems = 0;
+
+
+// Add produto à sacola
+const btnBuy = document.querySelectorAll('.add-bag');
+
+btnBuy.forEach(item => {
+
+    let key;
+
+
+    item.addEventListener('click', e => {
+
+
+        // Pega o id do produto
+        key = e.target.getAttribute('key');
+
+        // Pega os produtos add à sacola -> salvos no localStorage
+        const bagProducts = getBagProduct();
+
+        console.log(key)
+
+        console.log(bagProducts.filter(item => {
+         
+            if(item.id == key) {
+
+                alert('O item já encontra-se na sua sacola.');
+
+            } else {
+            const newFavoriteProduct = allProducts[key]; // Pega os dados do produto a ser salvo
+
+            // console.log(newFavoriteProduct)
+
+            favoriteProducts.push(newFavoriteProduct); // Adiciona produto à lista
+
+            saveFavoriteProducts(favoriteProducts); // atualiza lista no localStorage
+            }
+            
+        }))    
+
+        /*
+
+       const addToBag = allProducts[key]; // Pega os dados do produto a ser salvo
+
+        // console.log(addToBag)
+
+        bagProducts.push(addToBag); // Adiciona produto à lista
+
+        saveBagProducts(bagProducts); // atualiza lista no localStorage
+
+        // Exibe msg informando que houve a add do produto à sacola
+        alert(`O item ${allProducts[key].productName} foi adicionado à sacola com sucesso!`);
+
+        
+
+    });
+
+});
+*/

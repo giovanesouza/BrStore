@@ -158,32 +158,19 @@ trashIcon.forEach(removeProd => {
         console.log(key)
 
 
-        // Monta uma nova lista excluindo o item removido dos favoritos
+        // Monta uma nova lista excluindo o item removido da sacola
         let updateBagList = bagProducts.filter(item => item.id !== key);
 
+        const removeList = confirm(`Você realmente deseja remover este produto da sacola?`);
 
-        // Atualiza a list da bag (checkout) no localStorage
-        saveBagProducts(updateBagList);
+        // Caso clique em ok (true) -> atualiza a lista no localStorage e recarrega a página com a atualização
+        if (removeList) {
+            saveBagProducts(updateBagList); // Atualiza lista no localStorage
 
-        setTimeout(() => {
-            location.reload(); // Recarrega a página para renderizar a lista atualizada
-        }, 100)
-
-
-
-        /*
-              // Exibe opção para confirmar se realmente deseja remover da lista
-              const removeList = confirm(`Você realmente deseja remover este produto da lista?`);
-      
-              // Caso clique em ok (true) -> atualiza a lista no localStorage e recarrega a página com a atualização
-              if(removeList) {
-                  saveFavoriteProducts(updateFavoriteList); // Atualiza lista no localStorage
-      
-                  setTimeout(() => {
-                      location.reload(); // Recarrega a página para renderizar a lista atualizada
-                  }, 100)
-              }
-      */
+            setTimeout(() => {
+                location.reload(); // Recarrega a página para renderizar a lista atualizada
+            }, 100)
+        }
 
     });
 
@@ -214,7 +201,7 @@ btnFinalizePurchase.addEventListener('click', (e) => {
 
     e.preventDefault();
 
-    if (cardType !== "") {
+    if (cardType !== "" && totalPriceItem.innerText !== "0.00") {
 
         alert(`Seu pagamento com o ${cardType} está sendo processado...`);
         alert('Compra finalizada com sucesso!');
@@ -224,6 +211,9 @@ btnFinalizePurchase.addEventListener('click', (e) => {
 
         window.location.reload(); // Recarrega a página
 
+    } else if (totalPriceItem.innerText === "0.00") {
+        alert('Seu carrinho está vazio. \nAdicione produtos para dar continuidade ao pagamento.');
+    
     } else {
         alert('Escolha a opção de pagamento.');
     }
