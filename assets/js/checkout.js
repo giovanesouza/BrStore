@@ -6,6 +6,11 @@ const getBagProduct = () => { return JSON.parse(localStorage.getItem('checkout')
 const bagProducts = getBagProduct();
 
 
+// Salva novo produto
+const saveBagProducts = (bag) => { return localStorage.setItem('checkout', JSON.stringify(bag)); };
+
+
+// HEADER -> Indicação da qtd de produtos adicionados à sacola e Aside
 
 const updateTotalItems = () => {
     // Pega os produtos add à sacola -> salvos no localStorage
@@ -38,7 +43,6 @@ totalPriceItem.innerHTML = totalPrice.toFixed(2);
 
 
 
-
 const listItems = document.querySelector('#list-items tbody');
 
 
@@ -63,9 +67,9 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
         <td> R$ <span class="unit-price">${prod.newPrice.toFixed(2)}</span> </td>
 
         <td>
-            <i class="bi bi-dash-square-fill"></i>
+            <i class="bi bi-dash-square-fill" key="${prod.id}"></i>
             <span class="item-quantity">1</span>
-            <i class="bi bi-plus-square-fill"></i>
+            <i class="bi bi-plus-square-fill" key="${prod.id}"></i>
 
         </td>
 
@@ -75,7 +79,7 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
 
 
         <td>
-            <i class="bi bi-trash3-fill" key="${key}"></i>
+            <i class="bi bi-trash3-fill" key="${prod.id}"></i>
         </td>
         </tr>
 `;
@@ -84,51 +88,55 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
 
 
 
-let addItem = document.querySelectorAll('.bi-plus-square-fill');
-let removeItem = document.querySelectorAll('.bi-dash-square-fill');
-let valueTotalItem = document.querySelectorAll('.item-quantity');
 
-let quantityItem;
+// Incremento e decremento da qtd de produtos
+let incrementItem = document.querySelectorAll('.bi-plus-square-fill');
+let decrementItem = document.querySelectorAll('.bi-dash-square-fill');
+let valueTotalItem = document.querySelectorAll('span.item-quantity');
+let quantityItem = valueTotalItem;
 
 
-for (let i = 0; i < removeItem.length; i++) {
+// Incrementa
+incrementItem.forEach(increment => {
 
-    let quantityItem = parseInt(valueTotalItem[i].innerText);
+    let key;
 
-    removeItem[i].addEventListener('click', () => {
+    increment.addEventListener("click", e => {
+
+        key = parseInt(e.target.getAttribute('key'));
+
+        console.log('Increment', key)
+
+        quantityItem = parseInt(quantityItem[key - 1].textContent);
 
         // console.log(quantityItem)
-        if (quantityItem > 1) {
-            valueTotalItem[i].innerHTML -= 1;
-        }
 
     });
 
-}
+});
 
 
+// Decrementa
+decrementItem.forEach(decrement => {
 
+    let key;
 
+    decrement.addEventListener("click", e => {
 
+        key = parseInt(e.target.getAttribute('key'));
 
+        console.log('Decrement', key)
 
+        quantityItem = parseInt(quantityItem[key - 1].textContent);
+        console.log(quantityItem)
 
+        if (quantityItem[key] <= 1) {
+            alert("A quantidade de produto não pode ser menor que 1.")
+        } else {
+            quantityItem--;
+            valueTotalItem.innerHTML = quantityItem;
+        }
 
-// Remove o produto da bag (Apenas do HTML)
-const trashIcon = document.querySelectorAll('.bi-trash3-fill');
-
-trashIcon.forEach(item => {
-
-
-    let bagProduct = document.querySelectorAll('tbody tr');
-    let key; // Salva a chave do icon clicado
-
-
-    item.addEventListener('click', (e) => {
-
-        key = e.target.getAttribute('key');
-
-        bagProduct[key].remove(); // Remove o item 
 
     });
 
@@ -137,4 +145,88 @@ trashIcon.forEach(item => {
 
 
 
+
+
+const trashIcon = document.querySelectorAll('.bi-trash3-fill');
+let key;
+
+trashIcon.forEach(removeProd => {
+
+    removeProd.addEventListener('click', () => {
+
+        key = parseInt(removeProd.getAttribute('key'));
+        console.log(key)
+
+
+        // Monta uma nova lista excluindo o item removido dos favoritos
+        let updateBagList = bagProducts.filter(item => item.id !== key);
+
+
+        // Atualiza a list da bag (checkout) no localStorage
+        saveBagProducts(updateBagList);
+
+        setTimeout(() => {
+            location.reload(); // Recarrega a página para renderizar a lista atualizada
+        }, 100)
+
+
+
+        /*
+              // Exibe opção para confirmar se realmente deseja remover da lista
+              const removeList = confirm(`Você realmente deseja remover este produto da lista?`);
+      
+              // Caso clique em ok (true) -> atualiza a lista no localStorage e recarrega a página com a atualização
+              if(removeList) {
+                  saveFavoriteProducts(updateFavoriteList); // Atualiza lista no localStorage
+      
+                  setTimeout(() => {
+                      location.reload(); // Recarrega a página para renderizar a lista atualizada
+                  }, 100)
+              }
+      */
+
+    });
+
+});
+
+
+
+// Finalização da compra
+
+const btnFinalizePurchase = document.querySelector('form#payment-method button[type=submit]');
+let paymentMethod = document.querySelectorAll('#payment-method [name="payment_method"]');
+
+
+let cardType = ""; // Vai armazenar o tipo de pagamento
+
+paymentMethod.forEach(inputRadio => {
+
+    inputRadio.addEventListener('change', e => {
+
+        cardType = e.target.value;
+
+    });
+
+});
+
+
+btnFinalizePurchase.addEventListener('click', (e) => {
+
+    e.preventDefault();
+
+    if (cardType !== "") {
+
+        alert(`Seu pagamento com o ${cardType} está sendo processado...`);
+        alert('Compra finalizada com sucesso!');
+
+        // Atualiza a list da bag (checkout) no localStorage
+        saveBagProducts([]);
+
+        window.location.reload(); // Recarrega a página
+
+    } else {
+        alert('Escolha a opção de pagamento.');
+    }
+
+});
 
