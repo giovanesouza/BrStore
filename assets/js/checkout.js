@@ -11,17 +11,16 @@ const saveBagProducts = (bag) => { return localStorage.setItem('checkout', JSON.
 
 
 // HEADER -> Indicação da qtd de produtos adicionados à sacola e Aside
+const totalBagItemsHeader = document.querySelector('.total-items-bag');
+const totalBagItemsAside = document.querySelector('#totalBagQuantityItems');
 
 const updateTotalItems = () => {
     // Pega os produtos add à sacola -> salvos no localStorage
     const bagProducts = getBagProduct();
 
-    const totalBagItemsHeader = document.querySelector('.total-items-bag');
-    const totalBagItemsAside = document.querySelector('#totalBagQuantityItems');
     totalBagItemsHeader.innerHTML = bagProducts.length;
     totalBagItemsAside.innerHTML = bagProducts.length;
 }
-
 updateTotalItems();
 
 
@@ -163,9 +162,9 @@ const discout = () => {
 
         // console.log(cupomValue);
         return true;
-        
+
         // Cupom inválido -> borda vermelha e fundo branco
-    } else if(cupomValue.length !== 0) {
+    } else if (cupomValue.length !== 0) {
         // Insere uma borda verde
         setTimeout(() => {
             inputCupom.style.backgroundColor = '#fff';
@@ -208,6 +207,19 @@ function updateTotalPrice() {
 
         cupomApplied = true;
     }
+
+
+    // Atualiza o valor de itens (Header - bag - e Aside - info. de pagamento - )
+    let totalItem = 0;
+
+    document.querySelectorAll('span.item-quantity').forEach(item => {
+        totalItem += parseInt(item.textContent); // Faz a soma do total de todos os itens
+    })
+
+    totalBagItemsHeader.innerHTML = totalItem;
+    totalBagItemsAside.innerHTML = totalItem;
+    // console.log(totalItem)
+
 
     // Atualiza os elementos HTML com os novos valores
     subtotal.innerHTML = totalPrice.toFixed(2);
