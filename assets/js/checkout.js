@@ -26,26 +26,10 @@ updateTotalItems();
 
 
 
-// Atualiza o preço (subtotal/total)
-let totalPrice = 0;
-
-for (let bag of bagProducts) {
-    totalPrice += bag.price;
-}
-
-const subtotal = document.querySelector('#subtotal');
-const totalPriceItem = document.querySelector('#totalPriceItem');
-
-subtotal.innerHTML = totalPrice.toFixed(2);
-totalPriceItem.innerHTML = totalPrice.toFixed(2);
-
-
-
 const listItems = document.querySelector('#list-items tbody');
 
 
 // Renderização condicional: Se não houver itens na sacola, exibe a msg abaixo, senão exibe-os
-
 bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
     `<tr>
         <td colspan="5" style="padding-top: 2rem;">
@@ -59,7 +43,7 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
         <tr key="${prod.id}">
         <td class="product-img-name">
             <img src="${prod.image}" alt="img produto" />
-            <span class="product-name">${prod.title.slice(0,12)}</span>
+            <span class="product-name">${prod.title.slice(0, 12)}</span>
         </td>
 
         <td> R$ <span class="unit-price">${prod.price.toFixed(2)}</span> </td>
@@ -72,7 +56,7 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
         </td>
 
         <td>
-            R$ <span class="total-price">${prod.price.toFixed(2)}</span>
+            R$ <span class="total-price-item">${prod.price.toFixed(2)}</span>
         </td>
 
 
@@ -90,33 +74,148 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
 // Incremento e decremento da qtd de produtos
 let incrementItem = document.querySelectorAll('.bi-plus-square-fill');
 let decrementItem = document.querySelectorAll('.bi-dash-square-fill');
+
 let valueTotalItem = document.querySelectorAll('span.item-quantity');
-let quantityItem = parseInt(valueTotalItem.textContent);
-
-
 
 // Incrementa
-incrementItem.forEach(increment => {
+incrementItem.forEach((increment, index) => {
 
-increment.addEventListener('click', e => {
-    
-    console.log('Incrementando...', e.target.getAttribute('key'))
-    console.log(valueTotalItem[e.target.getAttribute('key')])
-})
+    increment.addEventListener('click', e => {
 
+        // Pega a qtd do produto em questão
+        let currentQuantity = parseInt(valueTotalItem[index].textContent);
+
+        // console.log('Incrementando...', e.target.getAttribute('key'));
+        // console.log('Quantidade atual:', currentQuantity);
+
+        // Incrementa a quantidade
+        currentQuantity++;
+
+        // Atualiza o elemento HTML com a nova quantidade
+        valueTotalItem[index].textContent = currentQuantity;
+
+        // Atualiza o preço total
+        updateTotalPrice();
+    });
 });
 
 
 // Decrementa
-decrementItem.forEach(decrement => {
+decrementItem.forEach((decrement, index) => {
 
     decrement.addEventListener('click', e => {
-        console.log('Decrementando...', e.target.getAttribute('key'))
-    })
-  
+
+        // Pega a qtd do produto em questão
+        let currentQuantity = parseInt(valueTotalItem[index].textContent);
+
+        //   console.log('Decrementando...', e.target.getAttribute('key'));
+        //   console.log('Quantidade atual:', currentQuantity);
+
+        // Verifica se a quantidade é maior que 1 antes de decrementar
+        if (currentQuantity > 1) {
+            currentQuantity--;
+
+            // Atualiza o elemento HTML com a nova quantidade
+            valueTotalItem[index].textContent = currentQuantity;
+
+            // Atualiza o preço total
+            updateTotalPrice();
+        }
+
+
+    });
 });
 
 
+
+// Cupom de desconto
+
+const btnAplyCupom = document.querySelector('#aply-discount');
+
+const CUPOM = '10%OFF'; // Aplica cupom de 15%
+let cupomApplied = false;
+
+
+btnAplyCupom.addEventListener('click', () => {
+
+    // Verifica se o cupom é válido
+    // Se retornar true
+    if (discout())
+        updateTotalPrice(); // Atualiza o preço
+
+
+    console.log(discout())
+});
+
+
+const discout = () => {
+    const inputCupom = document.querySelector('#cupom'); // Pega o elemento
+    const cupomValue = (inputCupom.value).toUpperCase(); // Salva o valor do elemento
+
+    if (cupomValue === CUPOM) {
+        inputCupom.setAttribute('disabled', 'disabled'); // Caso o cupom seja válido, desabilita o input
+
+        // Cupom válido -> Insere uma borda verde e fundo branco
+        setTimeout(() => {
+            inputCupom.style.border = '0.2rem solid #28A745';
+            inputCupom.style.backgroundColor = '#fff';
+        }, 100)
+
+        // console.log(cupomValue);
+        return true;
+        
+        // Cupom inválido -> borda vermelha e fundo branco
+    } else if(cupomValue.length !== 0) {
+        // Insere uma borda verde
+        setTimeout(() => {
+            inputCupom.style.backgroundColor = '#fff';
+            inputCupom.style.border = '0.1rem solid #DC3545';
+        }, 100)
+    }
+
+    return false;
+
+}
+
+
+
+// Função para atualizar o preço total com base na quantidade
+function updateTotalPrice() {
+
+    let totalPrice = 0;
+
+    let valueTotalItem = document.querySelectorAll('span.item-quantity');
+    let priceTotalItem = document.querySelectorAll('span.total-price-item');
+
+    for (let i = 0; i < bagProducts.length; i++) {
+
+        let quantity = parseInt(valueTotalItem[i].textContent);
+        let price = parseFloat(bagProducts[i].price);
+        let totalItemPrice = quantity * price;
+
+        totalPrice += totalItemPrice;
+
+        // Atualiza o elemento HTML com o novo preço total do item
+        priceTotalItem[i].textContent = totalItemPrice.toFixed(2);
+    }
+
+    if (discout()) {
+        const discountAmount = (totalPrice * (10 / 100)).toFixed(2); // valor do desconto
+        totalPrice -= parseFloat(discountAmount);
+
+        // Renderiza o valor do desconto na tela
+        document.querySelector('#discount-value').innerHTML = discountAmount;
+
+        cupomApplied = true;
+    }
+
+    // Atualiza os elementos HTML com os novos valores
+    subtotal.innerHTML = totalPrice.toFixed(2);
+    totalPriceItem.innerHTML = totalPrice.toFixed(2);
+}
+
+
+updateTotalPrice();
 
 
 
@@ -187,7 +286,7 @@ btnFinalizePurchase.addEventListener('click', (e) => {
 
     } else if (totalPriceItem.innerText === "0.00") {
         alert('Seu carrinho está vazio. \nAdicione produtos para dar continuidade ao pagamento.');
-    
+
     } else {
         alert('Escolha a opção de pagamento.');
     }

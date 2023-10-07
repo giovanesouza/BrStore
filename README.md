@@ -1,3 +1,3 @@
 # BrStore
 
-Branch com a implementação da lógica (JS) no sistema.
+Branch com a implementação do consumo de APIs no sistema.

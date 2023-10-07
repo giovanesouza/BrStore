@@ -124,6 +124,8 @@ aside#payment-info {
     outline: none;
     border-radius: 1rem;
     padding: .8rem;
+
+    transition: all .3s ease-in;
 }
 
 
