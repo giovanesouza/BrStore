@@ -18,6 +18,8 @@ cardProduct.forEach(item => {
 
     item.addEventListener('click', e => {
 
+        console.log('ok')
+
         console.log(e.target)
         if (e.target.classList.contains(heart) && !e.target.classList.contains('favorite')) {
             key = e.target.getAttribute('key'); // pega a chave do produto

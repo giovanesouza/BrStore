@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../assets/css/cadastro.css" />
     <script src="../../assets/js/cadastro.js" defer></script>
     <script src="../../assets/js/inputMasks.js" defer></script>
+    <script src="../../assets/js/searchCep.js" defer></script>
     <title>Cadastre-se | BrStore</title>
 </head>
 
@@ -54,7 +55,7 @@
             <div class="user-location">
                 <i class="bi bi-geo-alt"></i>
 
-                <input type="text" placeholder="Informe o seu CEP" />
+                <input type="text" placeholder="Informe o seu CEP" id="cep" oninput="maskCEP(this)" />
             </div>
 
             <nav>

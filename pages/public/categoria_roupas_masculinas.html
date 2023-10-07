@@ -8,6 +8,8 @@
     <!-- Icons Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="../../assets/css/produtos.css" />
+    <script src="../../assets/js/inputMasks.js" defer></script>
+    <script src="../../assets/js/searchCep.js" defer></script>
     <title>Roupas Masculinas | BrStore</title>
 </head>
 
@@ -52,7 +54,7 @@
             <div class="user-location">
                 <i class="bi bi-geo-alt"></i>
 
-                <input type="text" placeholder="Informe o seu CEP" />
+                <input type="text" placeholder="Informe o seu CEP" id="cep" oninput="maskCEP(this)" />
             </div>
 
             <nav>

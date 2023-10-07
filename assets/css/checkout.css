@@ -20,6 +20,7 @@ section#bag-checkout {
     flex: 1;
 }
 
+
 #bag-checkout table#list-items {
     width: 100%;
     text-align: center;
@@ -37,6 +38,7 @@ table#list-items tbody {
 
 
 
+
 table#list-items tbody td.product-img-name {
     width: 15rem;
     display: flex;
@@ -51,7 +53,9 @@ table#list-items tbody td.product-img-name img {
 }
 
 td.product-img-name .product-name {
+    text-align: justify;
     font-weight: bold;
+    margin-left: 1.6rem;
 }
 
 td .bi-dash-square-fill,
@@ -213,7 +217,12 @@ aside#payment-info {
 @media (max-width: 426px) {
 
     table#list-items {
-        max-width: 50%;
+        width: 100%;
+    }
+
+    div#table {
+        width: 85vw;
+        overflow-x: auto; 
     }
 
 }

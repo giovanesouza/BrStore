@@ -26,14 +26,12 @@ updateTotalItems();
 
 
 
-
+// Atualiza o preço (subtotal/total)
 let totalPrice = 0;
 
 for (let bag of bagProducts) {
-
-    totalPrice += bag.newPrice;
+    totalPrice += bag.price;
 }
-
 
 const subtotal = document.querySelector('#subtotal');
 const totalPriceItem = document.querySelector('#totalPriceItem');
@@ -60,11 +58,11 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
         listItems.innerHTML += `
         <tr key="${prod.id}">
         <td class="product-img-name">
-            <img src="${prod.productImage}" alt="img produto" />
-            <span class="product-name">${prod.productName}</span>
+            <img src="${prod.image}" alt="img produto" />
+            <span class="product-name">${prod.title.slice(0,12)}</span>
         </td>
 
-        <td> R$ <span class="unit-price">${prod.newPrice.toFixed(2)}</span> </td>
+        <td> R$ <span class="unit-price">${prod.price.toFixed(2)}</span> </td>
 
         <td>
             <i class="bi bi-dash-square-fill" key="${prod.id}"></i>
@@ -74,7 +72,7 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
         </td>
 
         <td>
-            R$ <span class="total-price">${prod.newPrice.toFixed(2)}</span>
+            R$ <span class="total-price">${prod.price.toFixed(2)}</span>
         </td>
 
 
@@ -93,25 +91,18 @@ bagProducts.length === 0 ? listItems.insertAdjacentHTML("afterend",
 let incrementItem = document.querySelectorAll('.bi-plus-square-fill');
 let decrementItem = document.querySelectorAll('.bi-dash-square-fill');
 let valueTotalItem = document.querySelectorAll('span.item-quantity');
-let quantityItem = valueTotalItem;
+let quantityItem = parseInt(valueTotalItem.textContent);
+
 
 
 // Incrementa
 incrementItem.forEach(increment => {
 
-    let key;
-
-    increment.addEventListener("click", e => {
-
-        key = parseInt(e.target.getAttribute('key'));
-
-        console.log('Increment', key)
-
-        quantityItem = parseInt(quantityItem[key - 1].textContent);
-
-        // console.log(quantityItem)
-
-    });
+increment.addEventListener('click', e => {
+    
+    console.log('Incrementando...', e.target.getAttribute('key'))
+    console.log(valueTotalItem[e.target.getAttribute('key')])
+})
 
 });
 
@@ -119,27 +110,10 @@ incrementItem.forEach(increment => {
 // Decrementa
 decrementItem.forEach(decrement => {
 
-    let key;
-
-    decrement.addEventListener("click", e => {
-
-        key = parseInt(e.target.getAttribute('key'));
-
-        console.log('Decrement', key)
-
-        quantityItem = parseInt(quantityItem[key - 1].textContent);
-        console.log(quantityItem)
-
-        if (quantityItem[key] <= 1) {
-            alert("A quantidade de produto não pode ser menor que 1.")
-        } else {
-            quantityItem--;
-            valueTotalItem.innerHTML = quantityItem;
-        }
-
-
-    });
-
+    decrement.addEventListener('click', e => {
+        console.log('Decrementando...', e.target.getAttribute('key'))
+    })
+  
 });
 
 
