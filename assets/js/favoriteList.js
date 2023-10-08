@@ -46,19 +46,19 @@ favoriteProducts.length === 0 ? listProducts.insertAdjacentHTML("afterend", `<di
         <div class="product-card" key="${prod.id}">
 
         <div class="card-product-image">
-            <img src="${prod.productImage}" alt="Imagem produto" />
+            <img src="${prod.image}" alt="Imagem produto" />
             <i class="bi bi-suit-heart-fill favorite" key="${prod.id}"></i>
         </div>
 
         <div class="card-product-info">
-            <h4 class="product-name">${prod.productName}</h4>
+            <h4 class="product-name">${prod.title}</h4>
 
             <div class="price-before">
-                <span class="old-price">R$ ${prod.oldPrice.toFixed(2)}</span>
+                <span class="old-price">R$ ${prod.price.toFixed(2)}</span>
             </div>
 
             <div class="price-now">
-                <h5 class="new-price">R$ ${prod.newPrice.toFixed(2)}</h5>
+                <h5 class="new-price">R$ ${prod.price.toFixed(2)}</h5>
             </div>
 
             <button class="add-bag" key="${prod.id}">
