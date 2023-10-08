@@ -3,13 +3,13 @@
 // HEADER -> Indicação da qtd de produtos adicionados à sacola
 
 // Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio
-const getBagProducts = () => { return JSON.parse(localStorage.getItem('checkout')) || [] };
+const getBagProduct = () => { return JSON.parse(localStorage.getItem('checkout')) || [] };
+
 
 // Qtd total de itens da sacola
 const updateTotalItems = () => {
     // Pega os produtos add à sacola -> salvos no localStorage
-    const bagProducts = getBagProducts();
-
+    const bagProducts = getBagProduct();
 
     const totalBagItemsHeader = document.querySelector('.total-items-bag');
     totalBagItemsHeader.innerHTML = bagProducts.length;
@@ -43,26 +43,26 @@ favoriteProducts.length === 0 ? listProducts.insertAdjacentHTML("afterend", `<di
     favoriteProducts.map((prod, key) => {
 
         listProducts.innerHTML += `
-        <div class="product-card" key="${prod.id}">
+        <div class="product-card" key="${prod.id}" data-category="${prod.category}">
 
         <div class="card-product-image">
-            <img src="${prod.image}" alt="Imagem produto" />
+            <img src="${prod.image}" alt="${prod.title}" />
             <i class="bi bi-suit-heart-fill favorite" key="${prod.id}"></i>
         </div>
 
         <div class="card-product-info">
-            <h4 class="product-name">${prod.title}</h4>
+            <h4 class="product-name">${prod.title.slice(0, 16)}</h4>
 
             <div class="price-before">
-                <span class="old-price">R$ ${prod.price.toFixed(2)}</span>
+                <span class="old-price">R$ ${(prod.price * 5).toFixed(2)}</span>
             </div>
 
             <div class="price-now">
-                <h5 class="new-price">R$ ${prod.price.toFixed(2)}</h5>
+                <h5 class="new-price">R$ ${(prod.price * 3).toFixed(2)}</h5>
             </div>
 
-            <button class="add-bag" key="${prod.id}">
-                <i class="bi bi-bag-fill" key="${prod.id}"></i>
+            <button class="add-bag" key="${prod.id - 1}">
+                <i class="bi bi-bag-fill"></i>
                 Adicionar à sacola
             </button>
         </div>
@@ -74,8 +74,8 @@ favoriteProducts.length === 0 ? listProducts.insertAdjacentHTML("afterend", `<di
 
 
 const favorites = document.querySelectorAll('.favorite');
-let key;
 
+let key;
 favorites.forEach(item => {
 
     item.addEventListener('click', () => {
@@ -103,21 +103,34 @@ favorites.forEach(item => {
 
 
 
-/*
 
-// Adição de produtos à sacola pela pág favoritos
+// Pega todos os produtos da API
+const getAllProducts = () => {
 
-// Pega todos os produtos salvos no localStorage, caso não exista retorna um array vazio
-const getBagProduct = () => { return JSON.parse(localStorage.getItem('checkout')) || [] };
+    const url = `https://fakestoreapi.com/products/`;
+
+    return fetch(url)
+        .then(data => data.json())
+        .then(products => {
+
+            allProducts.push(...products);  // Salva os produtos da API (objetos) e deixa-os disponíveis p/ aplicação (Usando spread para adicionar produtos individuais)
+            // return products;
+        })
+        .catch((e) => console.log(e))
+}
+
+
 
 // Salva novo produto
 const saveBagProducts = (bag) => { return localStorage.setItem('checkout', JSON.stringify(bag)); };
 
+let allProducts = []; // Guarda todos os produtos da API
 
-let totalItems = 0;
+getAllProducts();
+// Adição de produtos à sacola pela pág favoritos
 
 
-// Add produto à sacola
+// Adiciona os ítens à bag
 const btnBuy = document.querySelectorAll('.add-bag');
 
 btnBuy.forEach(item => {
@@ -127,49 +140,44 @@ btnBuy.forEach(item => {
 
     item.addEventListener('click', e => {
 
-
         // Pega o id do produto
         key = e.target.getAttribute('key');
+
 
         // Pega os produtos add à sacola -> salvos no localStorage
         const bagProducts = getBagProduct();
 
-        console.log(key)
 
-        console.log(bagProducts.filter(item => {
-         
-            if(item.id == key) {
+        const addToBag = allProducts[key]; // Pega os dados do produto a ser salvo
 
-                alert('O item já encontra-se na sua sacola.');
 
-            } else {
-            const newFavoriteProduct = allProducts[key]; // Pega os dados do produto a ser salvo
+        console.log(bagProducts) // Lista os produtos adicionados À sacola
 
-            // console.log(newFavoriteProduct)
+        console.log('Item que será adicionado: ', addToBag)
 
-            favoriteProducts.push(newFavoriteProduct); // Adiciona produto à lista
 
-            saveFavoriteProducts(favoriteProducts); // atualiza lista no localStorage
-            }
-            
-        }))    
+        // Verifica se o item já foi adicionado à sacola
+        let onBag = bagProducts.filter(prod => { return prod.id === addToBag.id });
 
-        /*
-
-       const addToBag = allProducts[key]; // Pega os dados do produto a ser salvo
-
-        // console.log(addToBag)
-
-        bagProducts.push(addToBag); // Adiciona produto à lista
-
-        saveBagProducts(bagProducts); // atualiza lista no localStorage
-
-        // Exibe msg informando que houve a add do produto à sacola
-        alert(`O item ${allProducts[key].productName} foi adicionado à sacola com sucesso!`);
-
+        console.log('Está na sacola: ', onBag.length);
         
+                if (onBag.length === 1) {
+                    alert(`O item ${allProducts[key].title} já está na sua sacola!`)
+                } else {
+        
+                    // console.log(addToBag)
+        
+                    bagProducts.push(addToBag); // Adiciona produto à lista
+        
+                    saveBagProducts(bagProducts); // atualiza lista no localStorage
+        
+                    // Exibe msg informando que houve a add do produto à sacola
+                    alert(`O item ${allProducts[key].title} foi adicionado à sacola com sucesso!`);
+        
+                }
+     
+        updateTotalItems();
 
     });
 
 });
-*/
