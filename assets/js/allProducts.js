@@ -178,14 +178,28 @@ const renderProducts = async (category) => {
 
                 const addToBag = allProducts[key]; // Pega os dados do produto a ser salvo
 
-                // console.log(addToBag)
 
-                bagProducts.push(addToBag); // Adiciona produto à lista
+                // Verifica se o item já foi adicionado à sacola
+                let onBag = bagProducts.filter(prod => { return prod.id === addToBag.id });
 
-                saveBagProducts(bagProducts); // atualiza lista no localStorage
+                // console.log('Está na sacola: ', onBag.length);
 
-                // Exibe msg informando que houve a add do produto à sacola
-                alert(`O item ${allProducts[key].title} foi adicionado à sacola com sucesso!`);
+                if(onBag.length === 1) {
+                    alert(`O item ${allProducts[key].title} já está na sua sacola!`)
+                } else {
+
+                    // console.log(addToBag)
+    
+                    bagProducts.push(addToBag); // Adiciona produto à lista
+    
+                    saveBagProducts(bagProducts); // atualiza lista no localStorage
+                    
+                    // Exibe msg informando que houve a add do produto à sacola
+                    alert(`O item ${allProducts[key].title} foi adicionado à sacola com sucesso!`);
+                    
+                }
+                
+
 
                 updateTotalItems();
 
