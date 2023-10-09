@@ -11,7 +11,7 @@ const host = location.origin;
 let userEmail;
 let userPassword;
 
-if(userObj.length !== 0) {
+if (userObj.length !== 0) {
     // Informações para login
     userEmail = userObj[0].email;
     userPassword = userObj[0].senha;
@@ -32,16 +32,18 @@ btnLogar.addEventListener('click', (e) => {
         // Se todos os dados obrigatórios forem preenchidos, salva no localStorage
         if (validation(email, password)) {
 
-            if(email === userEmail && password === userPassword) {
+            if (email === userEmail && password === userPassword) {
                 alert('Usuário validado com sucesso!')
-                
+
                 // Redireciona para pág do usuário logado
                 setTimeout(() => {
-                    window.location.href = `${host}/pages/users/client/user.html`;
+                    // Quando estiver rodando localmente -> Descomentar o 1º location e comentar o 2º
+                    // window.location.href = `${host}/pages/users/client/user.html`;
+                    window.location.href = `${host}/BrStore/pages/users/client/user.html`;
                 }, 100);
 
             } else {
-                
+
                 alert('Usuário não localizado!');
             }
 

@@ -27,7 +27,9 @@ btnRegister.addEventListener('click', (e) => {
 
             // Redireciona para pág de login
             setTimeout(() => {
-                window.location.href = `${host}/pages/public/login.html`;
+                // Quando estiver rodando localmente -> Descomentar o 1º location e comentar o 2º
+                // window.location.href = `${host}/pages/public/login.html`;
+                window.location.href = `${host}/BrStore/pages/public/login.html`;
             }, 100);
         }
 
